@@ -8,8 +8,8 @@
   outputs = {...}: {
     templates = {
       default = {
-        path = ./default;
-        description = "Simple rust template";
+        path = ./template;
+        description = "Rust development shell and starter project";
       };
     };
   };
