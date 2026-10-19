@@ -1,0 +1,27 @@
+name: Check Rust template
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install Nix
+        uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: Check template flake
+        run: nix flake check ./template
+
+      - name: Test Rust template
+        run: nix develop ./template --command cargo test --manifest-path ./template/Cargo.toml
+
+      - name: Build Rust template
+        run: nix build ./template
