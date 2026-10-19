@@ -20,5 +20,8 @@ jobs:
       - name: Check template flake
         run: nix flake check ./template
 
+      - name: Test Rust template
+        run: nix develop ./template --command cargo test --manifest-path ./template/Cargo.toml
+
       - name: Build Rust template
         run: nix build ./template
